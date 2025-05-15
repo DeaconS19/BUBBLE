@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BUBBLE - Exploit</title>
+  <style>
+    body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0a0a0a;
+    color: #d0e6ff;
+  }
+
+  header {
+    background-color: #001f3f;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #007acc;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    border-left: 4px solid #007acc;
+    padding-left: 12px;
+    color: #8ecaff;
+  }
+
+  p {
+    line-height: 1.6;
+    font-size: 1.1em;
+    color: #bcdcff;
+  }
+
+  .exploit-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #007acc;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .exploit-button:hover {
+    background-color: #005e99;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    color: #446;
+    border-top: 1px solid #222;
+  }
+  </style>
+  <script>
+    function loadScript() {
+      const script = document.createElement('script');
+      script.src = 'script.js';
+      script.onload = () => console.log('bubble initiated');
+      document.body.appendChild(script);
+    }
+  </script>
+</head>
+<body>
+
+  <header>
+    <h1>BUBBLE</h1>
+    <p>Chrome v132 & Below | CVE-2025-0998 + CVE-2025-0447</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Overview</h2>
+      <p><strong>BUBBLE</strong> is a two-stage Chrome exploit chain designed to demonstrate exploitation of Chromium v132 and earlier.</p>
+      <p>It leverages CVE-2025-0998 to achieve **initial code execution inside the browser sandbox**, and then escalates privileges using CVE-2025-0447, exploiting flaws in the navigation process to escape the sandbox.</p>
+    </section>
+
+    <section>
+      <h2>Stage 1 – CVE-2025-0998</h2>
+      <p>This vulnerability is an <strong>out-of-bounds memory access in the V8 JavaScript engine</strong>. By carefully crafting JavaScript that misleads the engine’s JIT assumptions, an attacker can write to restricted memory regions and execute arbitrary code within the sandboxed browser context.</p>
+    </section>
+
+    <section>
+      <h2>Stage 2 – CVE-2025-0447</h2>
+      <p>Once code execution is achieved, BUBBLE uses a <strong>privilege escalation via flawed navigation logic</strong> to break out of the sandbox. This allows the exploit to elevate privileges to the level of the Chrome process, potentially gaining access to host resources.</p>
+    </section>
+
+    <section>
+      <h2>Execute</h2>
+      <p>This button will execute BUBBLE.</p>
+      <a class="exploit-button" onclick="loadScript()">Run BUBBLE</a>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 BUBBLE Project.
+  </footer>
+
+</body>
+</html>
